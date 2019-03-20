@@ -1,0 +1,120 @@
+DROP TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+CREATE TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+BEGIN
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+BEGIN
+INSERT 0 10
+COMMIT
+BEGIN
+INSERT 0 3331
+COMMIT
+BEGIN
+INSERT 0 100
+COMMIT
+BEGIN
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+BEGIN
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+BEGIN
+ROLLBACK
+BEGIN
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+BEGIN
+ROLLBACK
+BEGIN
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+BEGIN
+ROLLBACK
+BEGIN
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+BEGIN
+ROLLBACK
+BEGIN
+INSERT 0 1
+COMMIT
+ rg | nom | cpt | sex | cod | cpf | emp_cod | dpt_cod 
+----+-----+-----+-----+-----+-----+---------+---------
+(0 rows)
+
+ rg | nom | cpt | sex | cod | cpf | emp_cod | dpt_cod | id | num | emp_cod | ttel_cod | area_ddd 
+----+-----+-----+-----+-----+-----+---------+---------+----+-----+---------+----------+----------
+(0 rows)
+
+ rg | nom | cpt | sex | cod | cpf | emp_cod | dpt_cod | cod | des 
+----+-----+-----+-----+-----+-----+---------+---------+-----+-----
+(0 rows)
+
+ emp_cod | prj_cod | des | res | cod | dpt_cod | rg | nom | cpt | sex | cod | cpf | emp_cod | dpt_cod 
+---------+---------+-----+-----+-----+---------+----+-----+-----+-----+-----+-----+---------+---------
+(0 rows)
+
+ com | num | cod | emp_cod | cep_cod | log | bai | cep | cid_cod | rg | nom | cpt | sex | cod | cpf | emp_cod | dpt_cod 
+-----+-----+-----+---------+---------+-----+-----+-----+---------+----+-----+-----+-----+-----+-----+---------+---------
+(0 rows)
+
+ dtn | nom | sex | emp_cod 
+-----+-----+-----+---------
+(0 rows)
+

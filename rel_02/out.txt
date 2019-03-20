@@ -1,0 +1,23 @@
+psql:main.sql:210: ERROR:  syntax error at or near ")"
+LINE 4:   (SELECT COD FROM DEPARTAMENTOS random() limit 1)
+                                                ^
+psql:main.sql:215: ERROR:  syntax error at or near ")"
+LINE 4:   (SELECT COD FROM DEPARTAMENTOS random() limit 1)
+                                                ^
+psql:main.sql:220: ERROR:  syntax error at or near ")"
+LINE 4:   (SELECT COD FROM DEPARTAMENTOS random() limit 1)
+                                                ^
+psql:main.sql:230: ERROR:  insert or update on table "enderecos" violates foreign key constraint "emp_cod_fk"
+DETAIL:  Key (emp_cod)=(1) is not present in table "empregados".
+psql:main.sql:231: ERROR:  current transaction is aborted, commands ignored until end of transaction block
+psql:main.sql:232: ERROR:  current transaction is aborted, commands ignored until end of transaction block
+psql:main.sql:242: ERROR:  insert or update on table "telefones" violates foreign key constraint "emp_cod_fk"
+DETAIL:  Key (emp_cod)=(1) is not present in table "empregados".
+psql:main.sql:243: ERROR:  current transaction is aborted, commands ignored until end of transaction block
+psql:main.sql:253: ERROR:  insert or update on table "empregados_projetos" violates foreign key constraint "emp_cod_fk"
+DETAIL:  Key (emp_cod)=(1) is not present in table "empregados".
+psql:main.sql:254: ERROR:  current transaction is aborted, commands ignored until end of transaction block
+psql:main.sql:255: ERROR:  current transaction is aborted, commands ignored until end of transaction block
+psql:main.sql:256: ERROR:  current transaction is aborted, commands ignored until end of transaction block
+psql:main.sql:257: ERROR:  current transaction is aborted, commands ignored until end of transaction block
+psql:main.sql:258: ERROR:  current transaction is aborted, commands ignored until end of transaction block

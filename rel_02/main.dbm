@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="69,180" last-zoom="0.95"
+	 default-schema="public" default-owner="postgres">
+<database name="main" encoding="UTF8" lc-collate="en_US.UTF-8" lc-ctype="pt_BR.UTF-8" is-template="false" allow-conns="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<extension name="dblink" cur-version="1.1">
+	<schema name="public"/>
+	<comment><![CDATA[connect to other PostgreSQL databases from within a database]]></comment>
+</extension>
+
+<table name="paises">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="120" y="220"/>
+	<column name="cod">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="id" not-null="true">
+		<type name="numeric" length="4" precision="0"/>
+	</column>
+	<column name="nom">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="paises_cod_key" type="uq-constr" table="public.paises">
+		<columns names="cod" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="paises_cod" type="pk-constr" table="public.paises">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="uf">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="420" y="220"/>
+	<column name="id" not-null="true">
+		<type name="numeric" length="4" precision="0"/>
+	</column>
+	<column name="uf">
+		<type name="character varying" length="2"/>
+	</column>
+	<column name="nom">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="uf_uf_key" type="uq-constr" table="public.uf">
+		<columns names="uf" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="uf_id" type="pk-constr" table="public.uf">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cidade">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="720" y="220"/>
+	<column name="cod" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="nom">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="uf_uf">
+		<type name="character varying" length="2"/>
+	</column>
+	<constraint name="cidade_cod" type="pk-constr" table="public.cidade">
+		<columns names="cod" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cep">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1040" y="220"/>
+	<column name="log">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="bai">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="cep" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="cid_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="cep_cod" type="pk-constr" table="public.cep">
+		<columns names="cep" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="areas">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1320" y="220"/>
+	<column name="id">
+		<type name="numeric" length="2" precision="0"/>
+	</column>
+	<column name="des">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="ddd" not-null="true">
+		<type name="numeric" length="2" precision="0"/>
+	</column>
+	<column name="pais_cod">
+		<type name="numeric" length="4" precision="0"/>
+	</column>
+	<constraint name="ddd_id" type="pk-constr" table="public.areas">
+		<columns names="ddd" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="departamentos">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="120" y="400"/>
+	<column name="cod" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="des">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="emp_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="departamento_cod" type="pk-constr" table="public.departamentos">
+		<columns names="cod" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="empregados">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="440" y="400"/>
+	<column name="rg">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="nom">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="cpt">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="sex">
+		<type name="character varying" length="2"/>
+	</column>
+	<column name="cod" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="cpf">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="emp_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="dpt_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="empregados_cod" type="pk-constr" table="public.empregados">
+		<columns names="cod" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="check_sex" type="ck-constr" table="public.empregados">
+			<expression><![CDATA[((sex)::text = ANY ((ARRAY['M'::character varying, 'F'::character varying])::text[]))]]></expression>
+	</constraint>
+</table>
+
+<table name="dependentes">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="780" y="400"/>
+	<column name="dtn">
+		<type name="date" length="0"/>
+	</column>
+	<column name="nom" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="sex">
+		<type name="character varying" length="1"/>
+	</column>
+	<column name="emp_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="nom" type="pk-constr" table="public.dependentes">
+		<columns names="nom" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="check_sex" type="ck-constr" table="public.dependentes">
+			<expression><![CDATA[((sex)::text = ANY ((ARRAY['M'::character varying, 'F'::character varying])::text[]))]]></expression>
+	</constraint>
+</table>
+
+<table name="enderecos">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1100" y="400"/>
+	<column name="com">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="num">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="cod" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="emp_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="cep_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="end_cod" type="pk-constr" table="public.enderecos">
+		<columns names="cod" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipotelefones">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1400" y="400"/>
+	<column name="cod" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="des">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="tipo_telefones_cod" type="pk-constr" table="public.tipotelefones">
+		<columns names="cod" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="telefones">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="120" y="660"/>
+	<column name="id" not-null="true">
+		<type name="numeric" length="2" precision="0"/>
+	</column>
+	<column name="num">
+		<type name="numeric" length="8" precision="0"/>
+	</column>
+	<column name="emp_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="ttel_cod">
+		<type name="numeric" length="2" precision="0"/>
+	</column>
+	<column name="area_ddd">
+		<type name="numeric" length="2" precision="0"/>
+	</column>
+	<constraint name="telefones_id" type="pk-constr" table="public.telefones">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="projetos">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="400" y="660"/>
+	<column name="des">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="res">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="cod" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="dpt_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="prj_cod" type="pk-constr" table="public.projetos">
+		<columns names="cod" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="empregados_projetos">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="680" y="660"/>
+	<column name="emp_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="prj_cod">
+		<type name="numeric" length="0"/>
+	</column>
+</table>
+
+<table name="cidades_projetos">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="980" y="660"/>
+	<column name="cid_cod">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="prj_cod">
+		<type name="numeric" length="0"/>
+	</column>
+</table>
+
+<relationship name="paises_has_many_uf" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#7c8a68"
+	 src-table="public.paises"
+	 dst-table="public.uf"
+	 src-required="false" dst-required="false"/>
+
+<constraint name="uf_uf_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.uf" table="public.cidade">
+	<columns names="uf_uf" ref-type="src-columns"/>
+	<columns names="uf" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="cid_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cidade" table="public.cep">
+	<columns names="cid_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="emp_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.empregados" table="public.departamentos">
+	<columns names="emp_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="emp_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.empregados" table="public.empregados">
+	<columns names="emp_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="emp_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.empregados" table="public.enderecos">
+	<columns names="emp_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="cep_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cep" table="public.enderecos">
+	<columns names="cep_cod" ref-type="src-columns"/>
+	<columns names="cep" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ttel_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipotelefones" table="public.telefones">
+	<columns names="ttel_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="emp_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.empregados" table="public.telefones">
+	<columns names="emp_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="area_ddd_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.areas" table="public.telefones">
+	<columns names="area_ddd" ref-type="src-columns"/>
+	<columns names="ddd" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="dpt_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.departamentos" table="public.projetos">
+	<columns names="dpt_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="emp_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.empregados" table="public.empregados_projetos">
+	<columns names="emp_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="prj_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.projetos" table="public.empregados_projetos">
+	<columns names="prj_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="cid_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cidade" table="public.cidades_projetos">
+	<columns names="cid_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="prj_cod_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.projetos" table="public.cidades_projetos">
+	<columns names="prj_cod" ref-type="src-columns"/>
+	<columns names="cod" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_cidade_uf" type="relfk"
+	 custom-color="#8e5a35"
+	 src-table="public.cidade"
+	 dst-table="public.uf" reference-fk="uf_uf_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_cep_cidade" type="relfk"
+	 custom-color="#e281ce"
+	 src-table="public.cep"
+	 dst-table="public.cidade" reference-fk="cid_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_departamentos_empregados" type="relfk"
+	 custom-color="#1c8522"
+	 src-table="public.departamentos"
+	 dst-table="public.empregados" reference-fk="emp_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_empregados_empregados" type="relfk"
+	 custom-color="#dd4d28"
+	 src-table="public.empregados"
+	 dst-table="public.empregados" reference-fk="emp_cod_fk"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="726.527" y="468.415"/>
+	<position x="726.527" y="389"/>
+	<position x="623.685" y="389"/>
+	</line>
+</relationship>
+
+<relationship name="rel_enderecos_empregados" type="relfk"
+	 custom-color="#e0cc46"
+	 src-table="public.enderecos"
+	 dst-table="public.empregados" reference-fk="emp_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_enderecos_cep" type="relfk"
+	 custom-color="#46f631"
+	 src-table="public.enderecos"
+	 dst-table="public.cep" reference-fk="cep_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_telefones_tipotelefones" type="relfk"
+	 custom-color="#c70cde"
+	 src-table="public.telefones"
+	 dst-table="public.tipotelefones" reference-fk="ttel_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_telefones_empregados" type="relfk"
+	 custom-color="#6151e0"
+	 src-table="public.telefones"
+	 dst-table="public.empregados" reference-fk="emp_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_telefones_areas" type="relfk"
+	 custom-color="#91df77"
+	 src-table="public.telefones"
+	 dst-table="public.areas" reference-fk="area_ddd_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_projetos_departamentos" type="relfk"
+	 custom-color="#95db23"
+	 src-table="public.projetos"
+	 dst-table="public.departamentos" reference-fk="dpt_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_empregados_projetos_empregados" type="relfk"
+	 custom-color="#2dad6e"
+	 src-table="public.empregados_projetos"
+	 dst-table="public.empregados" reference-fk="emp_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_empregados_projetos_projetos" type="relfk"
+	 custom-color="#0a6983"
+	 src-table="public.empregados_projetos"
+	 dst-table="public.projetos" reference-fk="prj_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_cidades_projetos_cidade" type="relfk"
+	 custom-color="#1b6401"
+	 src-table="public.cidades_projetos"
+	 dst-table="public.cidade" reference-fk="cid_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_cidades_projetos_projetos" type="relfk"
+	 custom-color="#7aec72"
+	 src-table="public.cidades_projetos"
+	 dst-table="public.projetos" reference-fk="prj_cod_fk"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
