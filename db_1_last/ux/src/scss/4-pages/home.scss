@@ -1,0 +1,43 @@
+#home{
+  #loginForm{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+}
+
+#register{
+  #registerForm{
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+#dashboard{
+  hr{
+    border: none;
+    background: transparentize(#A1212C, 0.95);
+  }
+  h5{
+    margin-top: 0;
+  }  
+  #contactsWrapper{
+  }
+  #pdfs{
+    padding: 2rem;
+    background: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .09);
+    .pdf{
+      &:nth-child(2n+1){
+        background: #D2D4D5;
+      }
+      i{
+        cursor: pointer;
+        &:hover{
+          color: #A1212C;
+        }
+      }
+    }
+  }
+}

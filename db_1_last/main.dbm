@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<role name="flask"
+      superuser="true"
+      inherit="true"
+      login="true"
+      encrypted="true"
+      password="********">
+</role>
+
+<database name="main" encoding="UTF8" lc-collate="en_US.UTF-8" lc-ctype="pt_BR.UTF-8" is-template="false" allow-conns="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="t_network">
+	<schema name="public"/>
+	<role name="flask"/>
+	<position x="60" y="60"/>
+	<column name="class">
+		<type name="character varying" length="0"/>
+	</column>
+</table>
+
+<table name="t_user">
+	<schema name="public"/>
+	<role name="flask"/>
+	<position x="260" y="60"/>
+	<column name="id" not-null="true" default-value="nextval('s_user_id'::regclass)">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="login">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="password">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="t_user_login_key" type="uq-constr" table="public.t_user">
+		<columns names="login" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="user_id" type="pk-constr" table="public.t_user">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_person">
+	<schema name="public"/>
+	<role name="flask"/>
+	<position x="540" y="60"/>
+	<column name="cnpj">
+		<type name="character varying" length="18"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="fantasy_name">
+		<type name="character varying" length="0"/>
+	</column>
+</table>
+
+<table name="t_document">
+	<schema name="public"/>
+	<role name="flask"/>
+	<position x="820" y="60"/>
+	<column name="id" default-value="nextval('s_document_id'::regclass)">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="person_id">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="title">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="hash_name">
+		<type name="character varying" length="0"/>
+	</column>
+</table>
+
+<sequence name="s_user_id"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="flask"/>
+</sequence>
+
+<sequence name="s_document_id"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="flask"/>
+</sequence>
+
+<view name="v_person">
+	<schema name="public"/>
+	<role name="flask"/>
+	<position x="1060" y="60"/>
+	<reference>
+		<expression><![CDATA[ SELECT to_char(t_person.id, '9999'::text) AS to_char,
+    t_person.login,
+    t_person.cnpj,
+    t_person.name,
+    t_person.fantasy_name
+   FROM t_person;]]></expression>
+	</reference>
+</view>
+
+<view name="v_document">
+	<schema name="public"/>
+	<role name="flask"/>
+	<position x="60" y="220"/>
+	<reference>
+		<expression><![CDATA[ SELECT to_char(t_document.id, '9999'::text) AS id,
+    to_char(t_document.person_id, '9999'::text) AS person_id,
+    t_document.title,
+    t_document.hash_name
+   FROM t_document;]]></expression>
+	</reference>
+</view>
+
+<relationship name="t_person_inherits_t_user" type="relgen"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#90bd08"
+	 src-table="public.t_person"
+	 dst-table="public.t_user"/>
+
+</dbmodel>

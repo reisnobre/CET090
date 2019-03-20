@@ -1,0 +1,40 @@
+@import "../3-modules/common/header";
+
+input{
+  padding: 1rem;
+  font-size: 1.3em;
+  border: none;
+  outline: none;
+  width: calc(100% - 2rem);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+  margin-bottom: 0.5rem;
+  &:last-child{
+    margin-bottom: 0;
+  }
+  &:focus{
+    border: none;
+    outline: none;
+  }
+}
+
+.wrapper{
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: $bg_2;
+  min-height: 100vh;
+
+}
+
+.page{
+  background: #D2D4D5;
+  min-height: 100vh;
+}
+
+.columns{
+  display: flex;
+  .column{
+    padding: 1rem;
+    width: 50%;
+  }
+}
